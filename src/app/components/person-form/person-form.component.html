@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12 border p-4">
+      <button type="button" class="btn btn-primary" (click)="newPerson()">Adicionar pessoa</button>
+      <div class="row mt-2" *ngIf="showForm">
+          <div class="col-auto">
+            <label for="inputPassword2" class="visually-hidden">Password</label>
+            <input type="text" required="required" class="form-control" id="input-nome" placeholder="Nome" [(ngModel)]="personName">
+          </div>
+          <div class="col-auto">
+            <button type="submit" [disabled]="!personName" class="btn btn-success mb-3" (click)="save()">{{personId ? 'Alterar' : 'Incluir'}}</button>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-danger mb-3" (click)="cancel()">Cancelar</button>
+          </div>
+      </div>
+      <div class="card-group mt-5">
+        <div class="card card-contact m-2" *ngFor="let person of persons">
+            <div class="card-body">
+                <h5 class="card-title">{{person.name}}</h5>
+                <app-contact-form [personId]="person.id"></app-contact-form>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" (click)="edit(person.id)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(person.id)">Excluir</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
