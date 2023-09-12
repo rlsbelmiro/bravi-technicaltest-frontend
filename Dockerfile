@@ -1,14 +1,9 @@
-FROM node:alpine
-
+# Stage 1
+FROM node:alpine as node
 WORKDIR /app
-
 COPY . .
-
-ENV API_URL=http://localhost:8080/api
 RUN npm install
-
-RUN npm run build
-
-EXPOSE 4200
-
-CMD ["npm", "start"]
+RUN npm run build --prod
+# Stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/bravi-web /usr/share/nginx/html
