@@ -1,1 +1,1 @@
-export const SERVER_URL = 'http://localhost:8080/api'
+export const SERVER_URL = 'https://bravi-api-belmiro-5f651e62278f.herokuapp.com/api'
